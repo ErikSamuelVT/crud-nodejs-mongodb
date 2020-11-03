@@ -11,12 +11,9 @@ const mongoose = require('mongoose');
 
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@test.hpwm6.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;
 
-mongoose.connect(
-    uri,
-    {useNewUrlParser: true, useUnifiedTopology: true}
-)
+mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=>{console.log('Base de datos conectada!!');})
-.catch((error)=>{console.log(error);})
+.catch((error)=>{console.log("Error de conexion: ",error);})
 
 //Configuraciones
     //Configuracion de EJS, motor de plantillas

@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const mascota = require('../models/mascota');
+const Mascota = require('../models/mascota');
 
 router.get('/', async(req,res)=>{
 
     try {
-        const arrayMascotasDB = await mascota.find();
-
+        const arrayMascotasDB = await Mascota.find();
         res.render("mascotas", {
         titulo: "Mascotas",
         footer:"Footer Mascotas",
         arrayMascotas: arrayMascotasDB
     });
+
     } catch (error) {
-        console.log(error);
+        console.log("Error de consuta",error);
     }
 });
 
