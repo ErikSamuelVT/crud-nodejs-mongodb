@@ -1,0 +1,16 @@
+<%- include('templates/header')%>
+    <h1 class="text-center"><%= titulo %></h1>
+    <div class="container card my-5 bg-dark text-white w-50">
+        <form class="card-body" action="/mascotas" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name"/>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" name="description"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+<%- include('templates/footer')%>

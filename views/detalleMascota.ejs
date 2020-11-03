@@ -1,0 +1,59 @@
+<%- include('templates/header')%>
+    <% if (error) { %>
+        <div class="container">
+            <div class="card text-center my-5 bg-dark text-white">
+                <div class="card-header">
+                   Error!
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><%= mensaje %></h5>
+                    <a href="/mascotas" class="btn btn-primary">Volver a mascotas</a>
+                </div>
+                <div class="card-footer text-muted text-white">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <h1 class="text-center"><%= titulo %></h1>
+        <div class="container">
+            <div class="card text-center my-5 bg-dark text-white">
+                <div class="card-header">
+                    <%= data.name %>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><%= data.id %></p>
+                    <hr class="bg-white w-50">
+                    <p class="card-text"><%= data.description %></p>
+                    <hr class="bg-white w-50">
+                    <div class="d-flex justify-content-around">
+                        <a href="/mascotas" class="btn btn-success">Volver</a>
+                        <a href="/mascotas/actualizar/<%= data.id %>" class="btn btn-warning">Editar</a>
+                        <button id="idEliminar" data-id="<%= data.id %>" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-white">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    <% } %>
+<%- include('templates/footer')%>
+
+<script>
+    const btnEliminar = document.querySelector('#idEliminar');
+
+    btnEliminar.addEventListener('click',async()=>{
+        const id = btnEliminar.dataset.id;
+        try {
+            const data = await fetch(`/mascotas/${id}`, {method: 'delete'})
+            const res = await data.json();
+            console.log(res);
+            if(!res.estado){
+                window.location.href = '/mascotas';
+            }
+        } catch (error) {
+            console.log('error de fetch ',error);
+        }
+    });
+</script>

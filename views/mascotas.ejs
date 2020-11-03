@@ -2,25 +2,26 @@
     <h1 class="text-center"><%= titulo %></h1>
     <div class="container">
         <% if (arrayMascotas.length > 0) { %>
+            <a href="/mascotas/crear" class="btn btn-success d-block my-2">Crear otro elemento</a>
          <% arrayMascotas.forEach(element => { %>
             <div class="card text-center my-5 bg-dark text-white">
                 <div class="card-header">
                     <%= element.name %>
                 </div>
                 <div class="card-body">
+                    <p class="card-text"><%= element.id %></p>
+                    <hr class="bg-white w-50">
                     <p class="card-text"><%= element.description %></p>
                     <hr class="bg-white w-50">
-                    <div class="d-flex justify-content-around">
-                        <a href="/" class="btn btn-primary">Inicio</a>
-                        <a href="#" class="btn btn-warning">Editar</a>
-                        <a href="#" class="btn btn-danger">Eliminar</a>
-                    </div>
+                    <a href="/mascotas/<%= element.id %>" class="btn btn-warning">Detalle</a>  
                 </div>
                 <div class="card-footer text-muted text-white">
                     2 days ago
                 </div>
             </div>
          <% }) %>
+        <% } else { %>
+            <a href="/mascotas/crear" class="btn btn-success d-block my-2">Crear un nuevo elemento</a>
         <% } %>
     </div>
 <%- include('templates/footer')%>
